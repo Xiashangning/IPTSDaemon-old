@@ -10,3 +10,5 @@ The code is ported from linux-surface/iptsd and quo/iptsd
 **Warning, the processing algorithm is NOT optimised enough and it consumes around 10% cpu usage when fingers are detected, 4% or less when stylus is detected**
 
 Use this under your own consideration! Touching process is very energy consuming.
+
+To install the daemon, simply run the script and IPTSDaemon will be started when macOS starts.
