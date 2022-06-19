@@ -11,4 +11,12 @@ The code is ported from linux-surface/iptsd and quo/iptsd
 
 Use this under your own consideration! Touching process is very energy consuming.
 
-To install the daemon, simply run the script and IPTSDaemon will be started when macOS starts.
+To install the daemon, simply run the script `install_daemon.sh` and IPTSDaemon will be started when macOS starts.
+
+Then, in order to resume the service after wakeup, you need to install `sleepwatcher` using `Homebrew`: `brew install sleepwatcher`
+
+Finally, create ~/.sleep and ~/.wakeup files.
+
+In .sleep: `launchctl unload /Library/LaunchAgents/com.xavier.IPTSDaemon.plist 2>/dev/null`
+
+In .wakeup: `sleep 2 && launchctl load /Library/LaunchAgents/com.xavier.IPTSDaemon.plist`

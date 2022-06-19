@@ -52,7 +52,6 @@ static int main()
         IPTSHIDReport report;
         if (devices.touch.process_heatmap_input(data, report))
             ctrl.send_hid_report(report);
-        usleep(5000);
     };
     parser.on_stylus = [&](const auto &data) {
         StylusDevice &stylus = devices.get_stylus(data.serial);
