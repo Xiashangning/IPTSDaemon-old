@@ -237,7 +237,6 @@ void TouchManager::track(UInt8 &touch_cnt)
                             std::swap(inputs[touch_cnt], inputs[i]);
                         inputs[touch_cnt] = last[j];
                         inputs[touch_cnt].instability++;
-                        spdlog::info("Finger lifted at {:.04f} {:.04f} {}", inputs[touch_cnt].x, inputs[touch_cnt].y, inputs[touch_cnt].instability);
                         touch_cnt++;
                         break;
                     }
