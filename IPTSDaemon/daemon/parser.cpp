@@ -231,14 +231,14 @@ void Parser::parse_dft_stylus(Block &b)
 {
     StylusDFTData data;
     const auto dft = b.read<IPTSStylusDFTWindow>();
-    const IPTSStylusDFTWindowRow *dft_x[IPTS_DFT_MAX_ROWS], *dft_y[IPTS_DFT_MAX_ROWS];
+    const IPTSStylusDFTWindowRow *dft_x, *dft_y;
     
     if (dft.num_rows > IPTS_DFT_MAX_ROWS)
         return;
-    for (int i = 0; i < dft.num_rows; i++)
-        dft_x[i] = &b.read<IPTSStylusDFTWindowRow>();
-    for (int i = 0; i < dft.num_rows; i++)
-        dft_y[i] = &b.read<IPTSStylusDFTWindowRow>();
+    dft_x = &b.read<IPTSStylusDFTWindowRow>();
+    b.skip((dft.num_rows-1) * sizeof(IPTSStylusDFTWindowRow));
+    dft_y = &b.read<IPTSStylusDFTWindowRow>();
+    b.skip((dft.num_rows-1) * sizeof(IPTSStylusDFTWindowRow));
     
     data.type = dft.data_type;
     data.timestamp = dft.timestamp;

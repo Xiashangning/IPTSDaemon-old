@@ -40,8 +40,8 @@ public:
     UInt16 timestamp;
     UInt16 num_cols;
     UInt16 num_rows;
-    const IPTSStylusDFTWindowRow **dft_x;
-    const IPTSStylusDFTWindowRow **dft_y;
+    const IPTSStylusDFTWindowRow *dft_x;
+    const IPTSStylusDFTWindowRow *dft_y;
 };
 
 class SingletouchData {

@@ -149,21 +149,23 @@ std::vector<TouchInput> &TouchManager::process(const Heatmap &data)
 	return last;
 }
 
-void TouchManager::track(UInt8 touch_cnt)
+void TouchManager::track(UInt8 &touch_cnt)
 {
+    // Delete instable touch inputs
+    for (int j = 0; j < last_touch_cnt; j++) {
+        if (last[j].instability >= IPTS_TOUCH_INSTABILITY_THRESH) {
+            if (j != last_touch_cnt - 1) {
+                std::swap(last[j], last[last_touch_cnt-1]);
+                j--;
+            }
+            last_touch_cnt--;
+        }
+    }
 	// Calculate the distances between current and previous valid touch inputs
 	for (int i = 0; i < touch_cnt; i++) {
 		for (int j = 0; j < last_touch_cnt; j++) {
 			const TouchInput &in = inputs[i];
 			const TouchInput &last_in = last[j];
-            if (last_in.instability >= IPTS_TOUCH_INSTABILITY_THRESH) {
-                if (j != last_touch_cnt - 1)
-                    std::swap(last[j], last[--last_touch_cnt]);
-                else {
-                    --last_touch_cnt;
-                    break;
-                }
-            }
 
 			Float64 dx = 100 * (in.x - last_in.x);
 			Float64 dy = 100 * (in.y - last_in.y);
@@ -223,6 +225,7 @@ void TouchManager::track(UInt8 touch_cnt)
                 while (index_used & (1 << index))
                     index++;
                 inputs[i].index = index;
+                index_used |= 1 << index;
             }
         }
     } else if (touch_cnt < last_touch_cnt) {    // Some finger lifted
@@ -233,7 +236,8 @@ void TouchManager::track(UInt8 touch_cnt)
                         if (i != touch_cnt)
                             std::swap(inputs[touch_cnt], inputs[i]);
                         inputs[touch_cnt] = last[j];
-                        inputs[touch_cnt].instability = IPTS_TOUCH_INSTABILITY_THRESH;
+                        inputs[touch_cnt].instability++;
+                        spdlog::info("Finger lifted at {:.04f} {:.04f} {}", inputs[touch_cnt].x, inputs[touch_cnt].y, inputs[touch_cnt].instability);
                         touch_cnt++;
                         break;
                     }

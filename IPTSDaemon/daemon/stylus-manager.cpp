@@ -12,24 +12,24 @@
 
 namespace iptsd::daemon {
 
-static Float64 dft_interpolate_position(const struct IPTSStylusDFTWindowRow *r)
+static Float64 dft_interpolate_position(const struct IPTSStylusDFTWindowRow &r)
 {
     // assume the center component has the max amplitude
     unsigned maxi = IPTS_DFT_NUM_COMPONENTS/2;
 
     // off-screen components are always zero, don't use them
     Float64 mind = -.5, maxd = .5;
-    if      (r->real[maxi-1] == 0 && r->imag[maxi-1] == 0) { maxi++; mind = -1; }
-    else if (r->real[maxi+1] == 0 && r->imag[maxi+1] == 0) { maxi--; maxd =  1; }
+    if      (r.real[maxi-1] == 0 && r.imag[maxi-1] == 0) { maxi++; mind = -1; }
+    else if (r.real[maxi+1] == 0 && r.imag[maxi+1] == 0) { maxi--; maxd =  1; }
 
     // get phase-aligned amplitudes of the three center components
-    Float64 amp = sqrt(r->real[maxi]*r->real[maxi] + r->imag[maxi]*r->imag[maxi]);
+    Float64 amp = sqrt(r.real[maxi]*r.real[maxi] + r.imag[maxi]*r.imag[maxi]);
     if (amp < IPTS_DFT_POSITION_MIN_AMP) return NAN;
-    Float64 sin = r->real[maxi] / amp, cos = r->imag[maxi] / amp;
+    Float64 sin = r.real[maxi] / amp, cos = r.imag[maxi] / amp;
     Float64 x[] = {
-        sin * r->real[maxi-1] + cos * r->imag[maxi-1],
+        sin * r.real[maxi-1] + cos * r.imag[maxi-1],
         amp,
-        sin * r->real[maxi+1] + cos * r->imag[maxi+1],
+        sin * r.real[maxi+1] + cos * r.imag[maxi+1],
     };
 
     // convert the amplitudes into something we can fit a parabola to
@@ -41,17 +41,17 @@ static Float64 dft_interpolate_position(const struct IPTSStylusDFTWindowRow *r)
     // find critical point of fitted parabola
     Float64 d = (x[0] - x[2]) / (2 * (x[0] - 2*x[1] + x[2]));
 
-    return r->first + maxi + std::clamp(d, mind, maxd);
+    return r.first + maxi + std::clamp(d, mind, maxd);
 }
 
-static Float64 dft_interpolate_frequency(const struct IPTSStylusDFTWindowRow **x, const struct IPTSStylusDFTWindowRow **y, unsigned n)
+static Float64 dft_interpolate_frequency(const struct IPTSStylusDFTWindowRow *x, const struct IPTSStylusDFTWindowRow *y, unsigned n)
 {
     if (n < 3) return NAN;
 
     // find max row
     unsigned maxi = 0, maxm = 0;
     for (unsigned i = 0; i < n; i++) {
-        unsigned m = x[i]->magnitude + y[i]->magnitude;
+        unsigned m = x[i].magnitude + y[i].magnitude;
         if (m > maxm) { maxm = m; maxi = i; }
     }
     if (maxm < 2*IPTS_DFT_FREQ_MIN_MAG) return NAN;
@@ -65,8 +65,8 @@ static Float64 dft_interpolate_frequency(const struct IPTSStylusDFTWindowRow **x
     for (unsigned i = 0; i < 3; i++) {
         real[i] = imag[i] = 0;
         for (unsigned j = 0; j < IPTS_DFT_NUM_COMPONENTS; j++) {
-            real[i] += x[maxi+i-1]->real[j] + y[maxi+i-1]->real[j];
-            imag[i] += x[maxi+i-1]->imag[j] + y[maxi+i-1]->imag[j];
+            real[i] += x[maxi+i-1].real[j] + y[maxi+i-1].real[j];
+            imag[i] += x[maxi+i-1].imag[j] + y[maxi+i-1].imag[j];
         }
     }
 
@@ -100,9 +100,9 @@ StylusInput *StylusManager::process(const StylusDFTData &data)
     Float64 p;
     switch (data.type) {
     case IPTS_DFT_ID_POSITION:
-        if (data.num_cols && data.num_rows && data.dft_x[0]->magnitude > IPTS_DFT_POSITION_MIN_MAG && data.dft_y[0]->magnitude > IPTS_DFT_POSITION_MIN_MAG) {
-            real = data.dft_x[0]->real[IPTS_DFT_NUM_COMPONENTS/2] + data.dft_y[0]->real[IPTS_DFT_NUM_COMPONENTS/2];
-            imag = data.dft_x[0]->imag[IPTS_DFT_NUM_COMPONENTS/2] + data.dft_y[0]->imag[IPTS_DFT_NUM_COMPONENTS/2];
+        if (data.num_cols && data.num_rows && data.dft_x[0].magnitude > IPTS_DFT_POSITION_MIN_MAG && data.dft_y[0].magnitude > IPTS_DFT_POSITION_MIN_MAG) {
+            real = data.dft_x[0].real[IPTS_DFT_NUM_COMPONENTS/2] + data.dft_y[0].real[IPTS_DFT_NUM_COMPONENTS/2];
+            imag = data.dft_x[0].imag[IPTS_DFT_NUM_COMPONENTS/2] + data.dft_y[0].imag[IPTS_DFT_NUM_COMPONENTS/2];
             Float64 x = dft_interpolate_position(data.dft_x[0]);
             Float64 y = dft_interpolate_position(data.dft_y[0]);
             bool prox = !std::isnan(x) && !std::isnan(y);
@@ -124,10 +124,10 @@ StylusInput *StylusManager::process(const StylusDFTData &data)
         break;
 
     case IPTS_DFT_ID_BUTTON:
-        if (data.dft_x[0]->magnitude > IPTS_DFT_BUTTON_MIN_MAG && data.dft_y[0]->magnitude > IPTS_DFT_BUTTON_MIN_MAG) {
+        if (data.dft_x[0].magnitude > IPTS_DFT_BUTTON_MIN_MAG && data.dft_y[0].magnitude > IPTS_DFT_BUTTON_MIN_MAG) {
             // same phase as position signal = eraser, opposite phase = button
-            int btn = real * (data.dft_x[0]->real[IPTS_DFT_NUM_COMPONENTS/2] + data.dft_y[0]->real[IPTS_DFT_NUM_COMPONENTS/2])
-                    + imag * (data.dft_x[0]->imag[IPTS_DFT_NUM_COMPONENTS/2] + data.dft_y[0]->imag[IPTS_DFT_NUM_COMPONENTS/2]);
+            int btn = real * (data.dft_x[0].real[IPTS_DFT_NUM_COMPONENTS/2] + data.dft_y[0].real[IPTS_DFT_NUM_COMPONENTS/2])
+                    + imag * (data.dft_x[0].imag[IPTS_DFT_NUM_COMPONENTS/2] + data.dft_y[0].imag[IPTS_DFT_NUM_COMPONENTS/2]);
             input.button = btn < 0;
             rubber = btn > 0;
         } else {

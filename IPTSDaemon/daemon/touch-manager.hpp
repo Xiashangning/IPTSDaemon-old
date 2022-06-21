@@ -59,7 +59,7 @@ public:
 	std::vector<TouchInput> &process(const Heatmap &data);
 
 private:
-	void track(UInt8 touch_cnt);
+	void track(UInt8 &touch_cnt);
 	void update_cones(const TouchInput &palm);
 	bool check_cones(const TouchInput &input);
 };

@@ -17,7 +17,7 @@ Control::Control()
     service = IOIteratorNext(iterator);
     IOObjectRelease(iterator);
     if (service == IO_OBJECT_NULL)
-        throw common::cerror("Could not find `IntelPreciseTouchStylusDriver`!");
+        throw common::cerror("Could not find IntelPreciseTouchStylusDriver!");
     
     ret = IOServiceOpen(service, mach_task_self(), 0, &connect);
     if (ret != kIOReturnSuccess)

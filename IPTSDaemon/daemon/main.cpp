@@ -71,12 +71,13 @@ static int main()
     };
 
 	while (true) {
-        gsl::span<UInt8> &data = ctrl.read_input();
-        parser.prepare(&data);
-        
         try {
+            gsl::span<UInt8> &data = ctrl.read_input();
+            parser.prepare(&data);
             parser.parse();
         } catch (std::out_of_range &e) {
+            spdlog::error(e.what());
+        } catch (std::system_error &e) {
             spdlog::error(e.what());
         }
 
