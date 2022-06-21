@@ -13,6 +13,8 @@ Use this under your own consideration! Touching process is very energy consuming
 
 To install the daemon, simply run the script `install_daemon.sh` and all files needed will be copied to desired locations. After installation IPTSDaemon will be running when macOS starts.
 
+You will also need to install two `dylib` for it, in Terminal `brew install fmt inih`
+
 Then, in order to **resume the service after wakeup**, you need to install `sleepwatcher` using `Homebrew`: `brew install sleepwatcher`
 
 Finally, create ~/.sleep and ~/.wakeup files.
