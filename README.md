@@ -13,17 +13,26 @@ Use this under your own consideration! Touching process is very energy consuming
 
 To install the daemon, simply run the script `install_daemon.sh` and all files needed will be copied to desired locations. After installation IPTSDaemon will be running when macOS starts.
 
-You will also need to install two `dylib` for it, in Terminal `brew install fmt inih`
+You will also need to install two `dylib`(`fmt` and `inih`) and a daemon(`sleepwatcher`) for it to run properly.
 
-Then, in order to **resume the service after wakeup**, you need to install `sleepwatcher` using `Homebrew`: `brew install sleepwatcher`
+`Homebrew` is recommended to install them: in `Terminal`, execute `brew install fmt inih sleepwatcher`
 
-Finally, create ~/.sleep and ~/.wakeup files.
+Then, in order to **resume the service after wakeup**, you need to configure `sleepwatcher`: 
 
-In .sleep: `launchctl unload /Library/LaunchAgents/com.xavier.IPTSDaemon.plist 2>/dev/null`
+1. Create ~/.sleep and ~/.wakeup files.
+2. In .sleep: `launchctl unload /Library/LaunchAgents/com.xavier.IPTSDaemon.plist 2>/dev/null`
+3. In .wakeup: `sleep 2 && launchctl load /Library/LaunchAgents/com.xavier.IPTSDaemon.plist`
 
-In .wakeup: `sleep 2 && launchctl load /Library/LaunchAgents/com.xavier.IPTSDaemon.plist`
+For example, you can:
+```
+cd ~
+touch .sleep
+touch .wakeup
+echo "launchctl unload /Library/LaunchAgents/com.xavier.IPTSDaemon.plist 2>/dev/null" >> .sleep
+echo "sleep 2 && launchctl load /Library/LaunchAgents/com.xavier.IPTSDaemon.plist" >> .wakeup
+```
 
-If you want to disable touch when palm is detected or stylus is in using or near the stylus, go to config folder and find your device's config, add this:
+If you want to disable touch when palm is detected or stylus is detected or near the stylus, go to config folder and find your device's config, add this:
 
 ```
 [Touch]
