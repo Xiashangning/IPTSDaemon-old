@@ -24,21 +24,21 @@ public:
 
 inline constexpr auto index2_t::operator+=(index2_t const &v) -> index2_t &
 {
-	this->x += v.x;
-	this->y += v.y;
+	x += v.x;
+	y += v.y;
 	return *this;
 }
 
 inline constexpr auto index2_t::operator-=(index2_t const &v) -> index2_t &
 {
-	this->x -= v.x;
-	this->y -= v.y;
+	x -= v.x;
+	y -= v.y;
 	return *this;
 }
 
 inline constexpr auto index2_t::span() const -> index_t
 {
-	return this->x * this->y;
+	return x * y;
 }
 
 inline auto operator<<(std::ostream &os, index2_t const &i) -> std::ostream &

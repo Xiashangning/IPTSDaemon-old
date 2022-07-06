@@ -11,7 +11,6 @@
 		25246E9128571BA3008AE18F /* signal.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 25F4C3F328560C450008641E /* signal.hpp */; };
 		25246E9228571BA3008AE18F /* cerror.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 25F4C3F428560C450008641E /* cerror.hpp */; };
 		25246E9328571BA3008AE18F /* types.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 25F4C3F528560C450008641E /* types.hpp */; };
-		25246E9428571BA3008AE18F /* compiler.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 25F4C3F628560C450008641E /* compiler.hpp */; };
 		25246E9528571BAA008AE18F /* border.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 25F4C40228560C460008641E /* border.hpp */; };
 		25246E9628571BAA008AE18F /* distance_transform.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 25F4C40328560C460008641E /* distance_transform.hpp */; };
 		25246E9728571BAA008AE18F /* structure_tensor.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 25F4C40428560C460008641E /* structure_tensor.hpp */; };
@@ -86,7 +85,6 @@
 		25246EE828571C87008AE18F /* signal.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 25F4C3F328560C450008641E /* signal.hpp */; };
 		25246EE928571C87008AE18F /* cerror.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 25F4C3F428560C450008641E /* cerror.hpp */; };
 		25246EEA28571C87008AE18F /* types.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 25F4C3F528560C450008641E /* types.hpp */; };
-		25246EEB28571C87008AE18F /* compiler.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 25F4C3F628560C450008641E /* compiler.hpp */; };
 		25246EED28571C87008AE18F /* heatmap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F4C41428560C460008641E /* heatmap.cpp */; };
 		25246EEE28571C87008AE18F /* processor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F4C40028560C460008641E /* processor.cpp */; };
 		25246EF028571C87008AE18F /* cone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F4C3DA28560C450008641E /* cone.cpp */; };
@@ -100,13 +98,13 @@
 		25246EFC28571C87008AE18F /* config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F4C3DC28560C450008641E /* config.cpp */; };
 		25246F0028571C87008AE18F /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25D49D932854F25E008CAAA5 /* IOKit.framework */; };
 		25246F0B28571CC3008AE18F /* dump.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25246F0828571CC3008AE18F /* dump.cpp */; };
+		25B601AA2862060F007F0D24 /* libfmt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25B601A92862060F007F0D24 /* libfmt.a */; };
 		25C14384285C894B00B2CFF3 /* stylus-manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25C14382285C894B00B2CFF3 /* stylus-manager.cpp */; };
 		25C14385285C894B00B2CFF3 /* stylus-manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25C14382285C894B00B2CFF3 /* stylus-manager.cpp */; };
 		25C14386285C894B00B2CFF3 /* stylus-manager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 25C14383285C894B00B2CFF3 /* stylus-manager.hpp */; };
 		25C14387285C894B00B2CFF3 /* stylus-manager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 25C14383285C894B00B2CFF3 /* stylus-manager.hpp */; };
-		25CDE637285F321C003FB4C4 /* libfmt.8.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A35D61285B9AA3002368AA /* libfmt.8.1.1.dylib */; };
+		25C4A35F28629D7F0002FF03 /* libfmt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25B601A92862060F007F0D24 /* libfmt.a */; };
 		25CDE638285F323A003FB4C4 /* libinih.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A35D5F285B9A94002368AA /* libinih.0.dylib */; };
-		25CDE639285F3248003FB4C4 /* libfmt.8.1.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A35D61285B9AA3002368AA /* libfmt.8.1.1.dylib */; };
 		25CDE63A285F325B003FB4C4 /* libinih.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A35D5F285B9A94002368AA /* libinih.0.dylib */; };
 		25D49D942854F25E008CAAA5 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25D49D932854F25E008CAAA5 /* IOKit.framework */; };
 		25D552F8285EEAF500DA3F34 /* com.xavier.IPTSDaemon.plist in Copy Files */ = {isa = PBXBuildFile; fileRef = 25D552F6285EEA0E00DA3F34 /* com.xavier.IPTSDaemon.plist */; };
@@ -191,7 +189,7 @@
 		25246F0828571CC3008AE18F /* dump.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dump.cpp; sourceTree = "<group>"; };
 		25246F0928571CC3008AE18F /* proto-plot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "proto-plot.cpp"; sourceTree = "<group>"; };
 		25A35D5F285B9A94002368AA /* libinih.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libinih.0.dylib; path = ../../../../../../../../usr/local/Cellar/inih/55/lib/libinih.0.dylib; sourceTree = "<group>"; };
-		25A35D61285B9AA3002368AA /* libfmt.8.1.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfmt.8.1.1.dylib; path = ../../../../../../../../usr/local/Cellar/fmt/8.1.1_1/lib/libfmt.8.1.1.dylib; sourceTree = "<group>"; };
+		25B601A92862060F007F0D24 /* libfmt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfmt.a; path = ../../../../usr/local/Cellar/fmt/8.1.1_1/lib/libfmt.a; sourceTree = "<group>"; };
 		25C14382285C894B00B2CFF3 /* stylus-manager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "stylus-manager.cpp"; sourceTree = "<group>"; };
 		25C14383285C894B00B2CFF3 /* stylus-manager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "stylus-manager.hpp"; sourceTree = "<group>"; };
 		25D49D712854EDB2008CAAA5 /* IPTSDaemon */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = IPTSDaemon; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -232,7 +230,6 @@
 		25F4C3F328560C450008641E /* signal.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = signal.hpp; sourceTree = "<group>"; };
 		25F4C3F428560C450008641E /* cerror.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cerror.hpp; sourceTree = "<group>"; };
 		25F4C3F528560C450008641E /* types.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = types.hpp; sourceTree = "<group>"; };
-		25F4C3F628560C450008641E /* compiler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = compiler.hpp; sourceTree = "<group>"; };
 		25F4C3F928560C450008641E /* parser.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = parser.hpp; sourceTree = "<group>"; };
 		25F4C3FA28560C450008641E /* control.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = control.hpp; sourceTree = "<group>"; };
 		25F4C3FC28560C450008641E /* control.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = control.cpp; sourceTree = "<group>"; };
@@ -271,8 +268,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25C4A35F28629D7F0002FF03 /* libfmt.a in Frameworks */,
 				25CDE63A285F325B003FB4C4 /* libinih.0.dylib in Frameworks */,
-				25CDE639285F3248003FB4C4 /* libfmt.8.1.1.dylib in Frameworks */,
 				25246F0028571C87008AE18F /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -281,8 +278,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25B601AA2862060F007F0D24 /* libfmt.a in Frameworks */,
 				25CDE638285F323A003FB4C4 /* libinih.0.dylib in Frameworks */,
-				25CDE637285F321C003FB4C4 /* libfmt.8.1.1.dylib in Frameworks */,
 				25D49D942854F25E008CAAA5 /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -338,7 +335,7 @@
 		25D49D922854F25E008CAAA5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				25A35D61285B9AA3002368AA /* libfmt.8.1.1.dylib */,
+				25B601A92862060F007F0D24 /* libfmt.a */,
 				25A35D5F285B9A94002368AA /* libinih.0.dylib */,
 				25D49D932854F25E008CAAA5 /* IOKit.framework */,
 			);
@@ -408,7 +405,6 @@
 				25F4C3F328560C450008641E /* signal.hpp */,
 				25F4C3F428560C450008641E /* cerror.hpp */,
 				25F4C3F528560C450008641E /* types.hpp */,
-				25F4C3F628560C450008641E /* compiler.hpp */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -541,7 +537,6 @@
 				25246E9128571BA3008AE18F /* signal.hpp in Headers */,
 				25246E9228571BA3008AE18F /* cerror.hpp in Headers */,
 				25246E9328571BA3008AE18F /* types.hpp in Headers */,
-				25246E9428571BA3008AE18F /* compiler.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,7 +584,6 @@
 				25246EE828571C87008AE18F /* signal.hpp in Headers */,
 				25246EE928571C87008AE18F /* cerror.hpp in Headers */,
 				25246EEA28571C87008AE18F /* types.hpp in Headers */,
-				25246EEB28571C87008AE18F /* compiler.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

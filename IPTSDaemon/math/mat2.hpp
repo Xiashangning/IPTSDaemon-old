@@ -57,88 +57,88 @@ template <class T> inline constexpr auto Mat2s<T>::identity() -> Mat2s<T>
 
 template <class T> inline constexpr auto Mat2s<T>::operator+=(Mat2s<T> const &m) -> Mat2s<T> &
 {
-	this->xx += m.xx;
-	this->xy += m.xy;
-	this->yy += m.yy;
+	xx += m.xx;
+	xy += m.xy;
+	yy += m.yy;
 	return *this;
 }
 
 template <class T> inline constexpr auto Mat2s<T>::operator+=(T const &s) -> Mat2s<T> &
 {
-	this->xx += s;
-	this->xy += s;
-	this->yy += s;
+	xx += s;
+	xy += s;
+	yy += s;
 	return *this;
 }
 
 template <class T> inline constexpr auto Mat2s<T>::operator-=(Mat2s<T> const &m) -> Mat2s<T> &
 {
-	this->xx -= m.xx;
-	this->xy -= m.xy;
-	this->yy -= m.yy;
+	xx -= m.xx;
+	xy -= m.xy;
+	yy -= m.yy;
 	return *this;
 }
 
 template <class T> inline constexpr auto Mat2s<T>::operator-=(T const &s) -> Mat2s<T> &
 {
-	this->xx -= s;
-	this->xy -= s;
-	this->yy -= s;
+	xx -= s;
+	xy -= s;
+	yy -= s;
 	return *this;
 }
 
 template <class T> inline constexpr auto Mat2s<T>::operator*=(T const &s) -> Mat2s<T> &
 {
-	this->xx *= s;
-	this->xy *= s;
-	this->yy *= s;
+	xx *= s;
+	xy *= s;
+	yy *= s;
 	return *this;
 }
 
 template <class T> inline constexpr auto Mat2s<T>::operator/=(T const &s) -> Mat2s<T> &
 {
-	this->xx /= s;
-	this->xy /= s;
-	this->yy /= s;
+	xx /= s;
+	xy /= s;
+	yy /= s;
 	return *this;
 }
 
 template <class T> inline constexpr auto Mat2s<T>::vtmv(Vec2<T> const &v) const -> T
 {
-	return v.x * v.x * this->xx + v.x * v.y * this->xy + v.y * v.x * this->xy +
-	       v.y * v.y * this->yy;
+	return v.x * v.x * xx + v.x * v.y * xy + v.y * v.x * xy +
+	       v.y * v.y * yy;
 }
 
 template <class T> inline constexpr auto Mat2s<T>::inverse(T eps) const -> std::optional<Mat2s<T>>
 {
-	auto const d = this->det();
+	auto const d = det();
 
 	if (std::abs(d) <= eps)
 		return std::nullopt;
 
-	return {{this->yy / d, -this->xy / d, this->xx / d}};
+	return {{yy / d, -xy / d, xx / d}};
 }
 
 template <class T> inline constexpr auto Mat2s<T>::det() const -> T
 {
-	return this->xx * this->yy - this->xy * this->xy;
+	return xx * yy - xy * xy;
 }
 
 template <class T> inline constexpr auto Mat2s<T>::trace() const -> T
 {
-	return this->xx + this->yy;
+	return xx + yy;
 }
 
 template <class T> inline constexpr auto Mat2s<T>::eigen(T eps) const -> Eigen2<T>
 {
-	auto const [ew1, ew2] = this->eigenvalues(eps);
+	auto const [ew1, ew2] = eigenvalues(eps);
 
-	return {{ew1, ew2}, {this->eigenvector(ew1), this->eigenvector(ew2)}};
+	return {{ew1, ew2}, {eigenvector(ew1), eigenvector(ew2)}};
 }
 
 template <class T> inline constexpr auto Mat2s<T>::eigenvalues(T eps) const -> std::array<T, 2>
 {
-	return solve_quadratic(num<T>::one, -this->trace(), this->det(), eps);
+	return solve_quadratic(num<T>::one, -trace(), det(), eps);
 }
 
 template <class T> inline constexpr auto Mat2s<T>::eigenvector(T eigenvalue) const -> Vec2<T>
@@ -150,10 +150,10 @@ template <class T> inline constexpr auto Mat2s<T>::eigenvector(T eigenvalue) con
 	 * 1. Cancellation due to small values in subtraction.
 	 * 2. The vector being { 0, 0 }.
 	 */
-	if (std::abs(this->xx - eigenvalue) > std::abs(this->yy - eigenvalue)) {
-		ev = {-this->xy, this->xx - eigenvalue};
+	if (std::abs(xx - eigenvalue) > std::abs(yy - eigenvalue)) {
+		ev = {-xy, xx - eigenvalue};
 	} else {
-		ev = {this->yy - eigenvalue, -this->xy};
+		ev = {yy - eigenvalue, -xy};
 	}
 
 	return ev / ev.norm_l2();
@@ -163,7 +163,7 @@ template <class T>
 template <class S>
 [[nodiscard]] inline constexpr auto Mat2s<T>::cast() const -> Mat2s<S>
 {
-	return {static_cast<S>(this->xx), static_cast<S>(this->xy), static_cast<S>(this->yy)};
+	return {static_cast<S>(xx), static_cast<S>(xy), static_cast<S>(yy)};
 }
 
 template <typename T> auto operator<<(std::ostream &os, Mat2s<T> const &m) -> std::ostream &

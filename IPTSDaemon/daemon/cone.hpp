@@ -17,8 +17,8 @@ public:
 	clock::time_point position_update {};
 	clock::time_point direction_update {};
 
-	SInt32 x = 0;
-	SInt32 y = 0;
+    Float64 x = 0;
+    Float64 y = 0;
 	Float64 dx = 0;
 	Float64 dy = 0;
 
@@ -31,10 +31,10 @@ public:
 	bool alive();
 	bool active();
 
-	void update_position(SInt32 x, SInt32 y);
-	void update_direction(SInt32 x, SInt32 y);
+	void update_position(Float64 rx, Float64 ry);
+	void update_direction(Float64 rx, Float64 ry);
 
-	bool check(SInt32 x, SInt32 y);
+	bool check(Float64 rx, Float64 ry);
 };
 
 } /* namespace iptsd::daemon */

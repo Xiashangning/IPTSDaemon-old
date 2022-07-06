@@ -109,7 +109,7 @@ void Config::load_dir(const std::string &name)
 		struct iptsd_config_device dev {};
 		ini_parse(p.path().c_str(), parse_dev, &dev);
 
-		if (dev.vendor != this->info.vendor_id || dev.product != this->info.product_id)
+		if (dev.vendor != info.vendor_id || dev.product != info.product_id)
 			continue;
 
 		ini_parse(p.path().c_str(), parse_conf, this);
@@ -118,7 +118,7 @@ void Config::load_dir(const std::string &name)
 
 Config::Config(IPTSDeviceInfo info) : info(info)
 {
-	this->load_dir("/usr/local/ipts_config");
+	load_dir("/usr/local/ipts_config");
 }
 
 } // namespace iptsd::daemon

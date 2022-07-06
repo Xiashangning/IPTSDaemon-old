@@ -20,14 +20,14 @@ public:
 
 	[[nodiscard]] const eval::perf::Registry &perf() const override;
 
-	SInt32 diagonal();
+	UInt16 diagonal();
 	void resize(index2_t size);
 
 	Config conf;
 	bool advanced = false;
 
 private:
-	SInt32 diag = 0;
+	UInt16 diag = 0;
 	std::unique_ptr<ITouchProcessor> tp;
 };
 

@@ -74,7 +74,7 @@ inline constexpr auto Kernel<T, Nx, Ny>::operator=(Kernel<T, Nx, Ny> const &rhs)
 	-> Kernel<T, Nx, Ny> &
 {
 	if (this != &rhs)
-		this->buf = rhs.buf;
+		buf = rhs.buf;
 
 	return *this;
 }
@@ -91,65 +91,65 @@ template <class T, index_t Nx, index_t Ny> auto Kernel<T, Nx, Ny>::stride() cons
 
 template <class T, index_t Nx, index_t Ny> auto Kernel<T, Nx, Ny>::data() -> pointer
 {
-	return this->buf.data();
+	return buf.data();
 }
 template <class T, index_t Nx, index_t Ny> auto Kernel<T, Nx, Ny>::data() const -> const_pointer
 {
-	return this->buf.data();
+	return buf.data();
 }
 
 template <class T, index_t Nx, index_t Ny>
 auto Kernel<T, Nx, Ny>::operator[](index2_t const &i) const -> const_reference
 {
-	return this->buf[ravel({Nx, Ny}, i)];
+	return buf[ravel({Nx, Ny}, i)];
 }
 
 template <class T, index_t Nx, index_t Ny>
 auto Kernel<T, Nx, Ny>::operator[](index2_t const &i) -> reference
 {
-	return this->buf[ravel({Nx, Ny}, i)];
+	return buf[ravel({Nx, Ny}, i)];
 }
 
 template <class T, index_t Nx, index_t Ny>
 auto Kernel<T, Nx, Ny>::operator[](index_t const &i) const -> const_reference
 {
-	return this->buf[i];
+	return buf[i];
 }
 
 template <class T, index_t Nx, index_t Ny>
 auto Kernel<T, Nx, Ny>::operator[](index_t const &i) -> reference
 {
-	return this->buf[i];
+	return buf[i];
 }
 
 template <class T, index_t Nx, index_t Ny> auto Kernel<T, Nx, Ny>::begin() -> iterator
 {
-	return this->buf.begin();
+	return buf.begin();
 }
 
 template <class T, index_t Nx, index_t Ny> auto Kernel<T, Nx, Ny>::end() -> iterator
 {
-	return this->buf.end();
+	return buf.end();
 }
 
 template <class T, index_t Nx, index_t Ny> auto Kernel<T, Nx, Ny>::begin() const -> const_iterator
 {
-	return this->buf.begin();
+	return buf.begin();
 }
 
 template <class T, index_t Nx, index_t Ny> auto Kernel<T, Nx, Ny>::end() const -> const_iterator
 {
-	return this->buf.end();
+	return buf.end();
 }
 
 template <class T, index_t Nx, index_t Ny> auto Kernel<T, Nx, Ny>::cbegin() const -> const_iterator
 {
-	return this->buf.cbegin();
+	return buf.cbegin();
 }
 
 template <class T, index_t Nx, index_t Ny> auto Kernel<T, Nx, Ny>::cend() const -> const_iterator
 {
-	return this->buf.cend();
+	return buf.cend();
 }
 
 template <class T, index_t Nx, index_t Ny>

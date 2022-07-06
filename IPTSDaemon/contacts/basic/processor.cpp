@@ -18,7 +18,7 @@ namespace iptsd::contacts::basic {
 TouchProcessor::TouchProcessor(Config cfg)
 	: heatmap {cfg.size}, touchpoints {}, cfg {cfg}, perfreg {}
 {
-	this->touchpoints.reserve(32);
+	touchpoints.reserve(32);
 }
 
 static bool is_palm(Float32 vx, Float32 vy, Float32 max_v)
@@ -50,18 +50,18 @@ static bool is_near(const TouchPoint &a, const TouchPoint &b)
 
 const std::vector<TouchPoint> &TouchProcessor::process()
 {
-	this->heatmap.reset();
-	this->touchpoints.clear();
+	heatmap.reset();
+	touchpoints.clear();
 
-	index2_t size = this->heatmap.size;
+	index2_t size = heatmap.size;
 	for (index_t x = 0; x < size.x; x++) {
 		for (index_t y = 0; y < size.y; y++) {
 			index2_t pos {x, y};
 
-			if (this->heatmap.value(pos) >= this->cfg.basic_pressure)
+			if (heatmap.value(pos) >= cfg.basic_pressure)
 				continue;
 
-			this->heatmap.set_visited(pos, true);
+			heatmap.set_visited(pos, true);
 		}
 	}
 
@@ -69,16 +69,16 @@ const std::vector<TouchPoint> &TouchProcessor::process()
 		for (index_t y = 0; y < size.y; y++) {
 			index2_t pos {x, y};
 
-			if (this->heatmap.get_visited(pos))
+			if (heatmap.get_visited(pos))
 				continue;
 
-			Cluster cluster {this->heatmap, pos};
+			Cluster cluster {heatmap, pos};
 
 			math::Mat2s<Float32> cov = cluster.cov();
 			math::Vec2<Float32> mean = cluster.mean();
 
-			mean.x /= gsl::narrow_cast<Float32>(this->heatmap.size.x) - 1.0f;
-			mean.y /= gsl::narrow_cast<Float32>(this->heatmap.size.y) - 1.0f;
+			mean.x /= gsl::narrow_cast<Float32>(heatmap.size.x) - 1.0f;
+			mean.y /= gsl::narrow_cast<Float32>(heatmap.size.y) - 1.0f;
 
 			math::Eigen2<Float32> eigen = cov.eigen();
 			Float32 vx = std::max(eigen.w[0], eigen.w[1]);
@@ -94,15 +94,15 @@ const std::vector<TouchPoint> &TouchProcessor::process()
 			point.confidence = 0; // TODO: Whats this?
 			point.scale = 0;      // see above
 
-			this->touchpoints.push_back(point);
+			touchpoints.push_back(point);
 		}
 	}
 
-	for (const auto &tp : this->touchpoints) {
+	for (const auto &tp : touchpoints) {
 		if (!tp.palm)
 			continue;
 
-		for (auto &o : this->touchpoints) {
+		for (auto &o : touchpoints) {
 			if (!is_near(tp, o))
 				continue;
 
@@ -110,7 +110,7 @@ const std::vector<TouchPoint> &TouchProcessor::process()
 		}
 	}
 
-	return this->touchpoints;
+	return touchpoints;
 }
 
 } // namespace iptsd::contacts::basic

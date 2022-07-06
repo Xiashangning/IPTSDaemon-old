@@ -219,13 +219,14 @@ void TouchManager::track(UInt8 &touch_cnt)
 	}
     
     if (touch_cnt > last_touch_cnt) {
+        int index = 0;
         for (int i = 0; i < touch_cnt; i++) {
             if (!inputs[i].tracked) {
-                int index = 0;
                 while (index_used & (1 << index))
                     index++;
                 inputs[i].index = index;
                 index_used |= 1 << index;
+                index++;
             }
         }
     } else if (touch_cnt < last_touch_cnt) {    // Some finger lifted

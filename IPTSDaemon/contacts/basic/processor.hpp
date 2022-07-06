@@ -31,12 +31,12 @@ private:
 
 inline container::Image<Float32> &TouchProcessor::hm()
 {
-	return this->heatmap.data;
+	return heatmap.data;
 }
 
 inline const eval::perf::Registry &TouchProcessor::perf() const
 {
-	return this->perfreg;
+	return perfreg;
 }
 
 } /* namespace iptsd::contacts::basic */

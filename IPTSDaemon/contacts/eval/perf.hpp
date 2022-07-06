@@ -111,19 +111,19 @@ inline Entry::Entry(std::string name)
 template<class D>
 inline auto Entry::total() const -> D
 {
-    return std::chrono::duration_cast<D>(this->duration);
+    return std::chrono::duration_cast<D>(duration);
 }
 
 template<class D>
 inline auto Entry::min() const -> D
 {
-    return std::chrono::duration_cast<D>(this->minimum);
+    return std::chrono::duration_cast<D>(minimum);
 }
 
 template<class D>
 inline auto Entry::max() const -> D
 {
-    return std::chrono::duration_cast<D>(this->maximum);
+    return std::chrono::duration_cast<D>(maximum);
 }
 
 template<class D>

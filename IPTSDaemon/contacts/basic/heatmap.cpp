@@ -11,23 +11,23 @@ namespace iptsd::contacts::basic {
 
 Float32 Heatmap::value(index2_t x)
 {
-	if (x.x < 0 || x.x >= this->size.x)
+	if (x.x < 0 || x.x >= size.x)
 		return 0;
 
-	if (x.y < 0 || x.y >= this->size.y)
+	if (x.y < 0 || x.y >= size.y)
 		return 0;
 
-	Float32 val = this->data[x];
-	if (val > this->average)
-		return val - this->average;
+	Float32 val = data[x];
+	if (val > average)
+		return val - average;
 	else
 		return 0;
 }
 
 bool Heatmap::compare(index2_t x, index2_t y)
 {
-	Float64 v1 = this->value(x);
-	Float64 v2 = this->value(y);
+	Float64 v1 = value(x);
+	Float64 v2 = value(y);
 
 	if (v2 > v1)
 		return false;
@@ -52,39 +52,39 @@ bool Heatmap::compare(index2_t x, index2_t y)
 
 bool Heatmap::get_visited(index2_t x)
 {
-	if (x.x < 0 || x.x >= this->size.x)
+	if (x.x < 0 || x.x >= size.x)
 		return true;
 
-	if (x.y < 0 || x.y >= this->size.y)
+	if (x.y < 0 || x.y >= size.y)
 		return true;
 
-	return this->visited[x];
+	return visited[x];
 }
 
 void Heatmap::set_visited(index2_t x, bool value)
 {
-	if (x.x < 0 || x.x >= this->size.x)
+	if (x.x < 0 || x.x >= size.x)
 		return;
 
-	if (x.y < 0 || x.y >= this->size.y)
+	if (x.y < 0 || x.y >= size.y)
 		return;
 
-	this->visited[x] = value;
+	visited[x] = value;
 }
 
 void Heatmap::reset()
 {
-	for (index_t x = 0; x < this->size.x; x++) {
-		for (index_t y = 0; y < this->size.y; y++)
-			this->set_visited(index2_t {x, y}, false);
+	for (index_t x = 0; x < size.x; x++) {
+		for (index_t y = 0; y < size.y; y++)
+			set_visited(index2_t {x, y}, false);
 	}
 
 	Float32 value = 0;
 
-	for (auto i : this->data)
+	for (auto i : data)
 		value += i;
 
-	this->average = value / gsl::narrow_cast<Float32>(this->size.span());
+	average = value / gsl::narrow_cast<Float32>(size.span());
 }
 
 } // namespace iptsd::contacts::basic

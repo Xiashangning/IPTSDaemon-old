@@ -10,43 +10,42 @@ namespace iptsd::contacts {
 
 container::Image<Float32> &TouchProcessor::hm()
 {
-	return this->tp->hm();
+	return tp->hm();
 }
 
 const std::vector<TouchPoint> &TouchProcessor::process()
 {
-	return this->tp->process();
+	return tp->process();
 }
 
 const eval::perf::Registry &TouchProcessor::perf() const
 {
-	return this->tp->perf();
+	return tp->perf();
 }
 
 void TouchProcessor::resize(index2_t size)
 {
-	if (this->tp) {
-		if (this->conf.size == size)
+	if (tp) {
+		if (conf.size == size)
 			return;
 
-		this->tp.reset(nullptr);
+		tp.reset(nullptr);
 	}
 
-	this->conf.size = size;
+	conf.size = size;
 
-	if (!this->advanced) {
-		this->tp = std::make_unique<basic::TouchProcessor>(this->conf);
+	if (!advanced) {
+		tp = std::make_unique<basic::TouchProcessor>(conf);
 	} else {
-		this->tp = std::make_unique<advanced::TouchProcessor>(this->conf.size);
+		tp = std::make_unique<advanced::TouchProcessor>(conf.size);
 	}
 
-	Float64 diag = std::sqrt(size.x * size.x + size.y * size.y);
-	this->diag = gsl::narrow_cast<SInt32>(diag);
+	diag = gsl::narrow_cast<UInt16>(std::sqrt(size.x * size.x + size.y * size.y));
 }
 
-SInt32 TouchProcessor::diagonal()
+UInt16 TouchProcessor::diagonal()
 {
-	return this->diag;
+	return diag;
 }
 
 } // namespace iptsd::contacts

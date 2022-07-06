@@ -111,7 +111,7 @@ static int main(int argc, char *argv[])
         auto const header_size = header->size;
         const PrettyBuf buf {&data[sizeof(IPTSDataHeader)], header->size};
         fmt::print("====== Buffer: {} == Type: {} == Size: {} =====\n", header_type, header_buffer, header_size);
-        fmt::print("{:ox}\n", buf);
+//        fmt::print("{:ox}\n", buf);
 	}
 
 	return 0;

@@ -35,63 +35,63 @@ public:
 
 template <class T> inline constexpr auto Vec2<T>::operator+=(Vec2<T> const &v) -> Vec2<T> &
 {
-	this->x += v.x;
-	this->y += v.y;
+	x += v.x;
+	y += v.y;
 	return *this;
 }
 
 template <class T> inline constexpr auto Vec2<T>::operator+=(T const &s) -> Vec2<T> &
 {
-	this->x += s;
-	this->y += s;
+	x += s;
+	y += s;
 	return *this;
 }
 
 template <class T> inline constexpr auto Vec2<T>::operator-=(Vec2<T> const &v) -> Vec2<T> &
 {
-	this->x -= v.x;
-	this->y -= v.y;
+	x -= v.x;
+	y -= v.y;
 	return *this;
 }
 
 template <class T> inline constexpr auto Vec2<T>::operator-=(T const &s) -> Vec2<T> &
 {
-	this->x -= s;
-	this->y -= s;
+	x -= s;
+	y -= s;
 	return *this;
 }
 
 template <class T> inline constexpr auto Vec2<T>::operator*=(T const &s) -> Vec2<T> &
 {
-	this->x *= s;
-	this->y *= s;
+	x *= s;
+	y *= s;
 	return *this;
 }
 
 template <class T> inline constexpr auto Vec2<T>::operator/=(T const &s) -> Vec2<T> &
 {
-	this->x /= s;
-	this->y /= s;
+	x /= s;
+	y /= s;
 	return *this;
 }
 
 template <class T> inline constexpr auto Vec2<T>::dot(Vec2<T> const &v) const -> T
 {
-	return this->x * v.x + this->y * v.y;
+	return x * v.x + y * v.y;
 }
 
 template <class T> inline constexpr auto Vec2<T>::norm_l2() const -> T
 {
 	using std::sqrt;
 
-	return sqrt(this->x * this->x + this->y * this->y);
+	return sqrt(x * x + y * y);
 }
 
 template <class T>
 template <class S>
 [[nodiscard]] inline constexpr auto Vec2<T>::cast() const -> Vec2<S>
 {
-	return {static_cast<S>(this->x), static_cast<S>(this->y)};
+	return {static_cast<S>(x), static_cast<S>(y)};
 }
 
 template <class T> inline auto operator<<(std::ostream &os, Vec2<T> const &v) -> std::ostream &

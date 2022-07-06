@@ -107,7 +107,7 @@ inline auto TouchProcessor::hm() -> Image<Float32> &
 
 inline auto TouchProcessor::process() -> std::vector<TouchPoint> const&
 {
-	return this->process(this->m_hm);
+	return process(m_hm);
 }
 
 } /* namespace iptsd::contacts::advanced */
