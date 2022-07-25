@@ -1,4 +1,5 @@
 # IPTSDaemon
+
 This is the user space IPTS daemon for Surface touch screen process
 
 It is supposed to be used with `BigSurface.kext` to enable touch screen & stylus support on macOS.
@@ -15,21 +16,26 @@ To install the daemon, simply run the script `install_daemon.sh` and all files n
 
 You will also need to install two `dylib`(`fmt` and `inih`) and a daemon(`sleepwatcher`) for it to run properly.
 
-`Homebrew` is recommended to install them: in `Terminal`, execute `brew install fmt inih sleepwatcher`
+`Homebrew` is recommended to install them:
 
-Then, in order to **resume the service after wakeup**, you need to configure `sleepwatcher`: 
+1. Install [Homebrew](https://brew.sh)
+
+2. in `Terminal`, execute `brew install fmt inih sleepwatcher`
+
+Then, in order to **resume the service after wakeup**, you need to configure `sleepwatcher`:
 
 1. Create ~/.sleep and ~/.wakeup files.
-2. In .sleep: `launchctl unload /Library/LaunchAgents/com.xavier.IPTSDaemon.plist 2>/dev/null`
-3. In .wakeup: `sleep 2 && launchctl load /Library/LaunchAgents/com.xavier.IPTSDaemon.plist`
+2. In .sleep: `launchctl unload /Library/LaunchDaemons/com.xavier.IPTSDaemon.plist 2>/dev/null`
+3. In .wakeup: `sleep 2 && launchctl load /Library/LaunchDaemons/com.xavier.IPTSDaemon.plist`
 
 For example, you can:
+
 ```
 cd ~
 touch .sleep
 touch .wakeup
-echo "launchctl unload /Library/LaunchAgents/com.xavier.IPTSDaemon.plist 2>/dev/null" >> .sleep
-echo "sleep 2 && launchctl load /Library/LaunchAgents/com.xavier.IPTSDaemon.plist" >> .wakeup
+echo "launchctl unload /Library/LaunchDaemons/com.xavier.IPTSDaemon.plist 2>/dev/null" >> .sleep
+echo "sleep 2 && launchctl load /Library/LaunchDaemons/com.xavier.IPTSDaemon.plist" >> .wakeup
 ```
 
 If you want to disable touch when palm is detected or stylus is detected or near the stylus, go to config folder and find your device's config, add this:
@@ -44,3 +50,7 @@ DisableTouch = true
 # disable touch near the stylus
 Cone = true
 ```
+
+### Enable on screen keyboard on login screen
+
+To enable the on screen keyboard to show up on the login screen you need to change your Accessibility settings in the `System Preferences>Users & Groups>Login Options>Accessibility Options` put a checkbox on the `Accessibility Keyboard`.
