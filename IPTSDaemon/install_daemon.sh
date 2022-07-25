@@ -2,16 +2,16 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
 # remove old IPTSDaemon
-## removed launch script from both locations
+## unload IPTSDaemon from both locations
 launchctl unload /Library/LaunchAgents/com.xavier.IPTSDaemon.plist 2>/dev/null
 launchctl unload /Library/LaunchDaemons/com.xavier.IPTSDaemon.plist 2>/dev/null
-## remove the remaining files
+## remove the files
 sudo rm /usr/local/bin/IPTSDaemon 2>/dev/null
 sudo rm /Library/LaunchAgents/com.xavier.IPTSDaemon.plist 2>/dev/null
 sudo rm /Library/LaunchDaemons/com.xavier.IPTSDaemon.plist 2>/dev/null
 sudo rm -rf /usr/local/ipts_config 2>/dev/null
 
-# install IPTSDaemon and set permissions
+# install new/updated IPTSDaemon and set permissions
 sudo mkdir -p /usr/local/bin/
 sudo chmod -R 755 /usr/local/bin/
 sudo cp $DIR/IPTSDaemon /usr/local/bin/
