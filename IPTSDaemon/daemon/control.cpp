@@ -9,6 +9,16 @@ namespace iptsd::daemon {
 
 Control::Control()
 {
+    connect_to_kernel();
+}
+
+Control::~Control()
+{
+    disconnect_from_kernel();
+}
+
+void Control::connect_to_kernel()
+{
     io_iterator_t   iterator;
     kern_return_t ret = IOServiceGetMatchingServices(kIOMasterPortDefault, IOServiceMatching("IntelPreciseTouchStylusDriver"), &iterator);
     if (ret != KERN_SUCCESS)
@@ -39,7 +49,7 @@ Control::Control()
     }
 }
 
-Control::~Control()
+void Control::disconnect_from_kernel()
 {
     for (int i=0; i < IPTS_BUFFER_NUM; i++)
         IOConnectUnmapMemory(connect, i, mach_task_self(), (IOVirtualAddress)buffers[i].data());
@@ -50,11 +60,13 @@ Control::~Control()
 
 gsl::span<UInt8> &Control::read_input()
 {
-    UInt64 idx;
+    UInt64 idx = 0;
     UInt32 output_size = sizeof(UInt8);
     kern_return_t ret = IOConnectCallScalarMethod(connect, kMethodReceiveInput, nullptr, 0, &idx, &output_size);
-    if (ret != kIOReturnSuccess)
+    should_reinit = idx == IPTS_BUFFER_NUM;
+    if (ret != kIOReturnSuccess || should_reinit) {
         throw common::cerror("Failed to receive input!");
+    }
     
     return buffers[idx];
 }

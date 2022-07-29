@@ -12,31 +12,20 @@ The code is ported from linux-surface/iptsd and quo/iptsd
 
 Use this under your own consideration! Touching process is very energy consuming.
 
-To install the daemon, simply run the script `install_daemon.sh` and all files needed will be copied to desired locations. After installation IPTSDaemon will be running when macOS starts.
+## Installation Steps
+#### 1. Download the latest release version
 
-You will also need to install two `dylib`(`fmt` and `inih`) and a daemon(`sleepwatcher`) for it to run properly.
+#### 2. Install two `dylib`(`fmt` and `inih`) for IPTSDaemon to run properly.
 
 `Homebrew` is recommended to install them:
 
-1. Install [Homebrew](https://brew.sh)
+- Install [Homebrew](https://brew.sh)
 
-2. in `Terminal`, execute `brew install fmt inih sleepwatcher`
+- in `Terminal`, execute `brew install fmt ini`
 
-Then, in order to **resume the service after wakeup**, you need to configure `sleepwatcher`:
+#### 3. Finally, run the script `install_daemon.sh` in the zip file you just downloaded and all files needed will be copied to desired locations. 
 
-1. Create ~/.sleep and ~/.wakeup files.
-2. In .sleep: `launchctl unload /Library/LaunchDaemons/com.xavier.IPTSDaemon.plist 2>/dev/null`
-3. In .wakeup: `sleep 2 && launchctl load /Library/LaunchDaemons/com.xavier.IPTSDaemon.plist`
-
-For example, you can:
-
-```
-cd ~
-touch .sleep
-touch .wakeup
-echo "launchctl unload /Library/LaunchDaemons/com.xavier.IPTSDaemon.plist 2>/dev/null" >> .sleep
-echo "sleep 2 && launchctl load /Library/LaunchDaemons/com.xavier.IPTSDaemon.plist" >> .wakeup
-```
+Normally there will be no output, indicating success. After installation IPTSDaemon will start automatically at boot.
 
 If you want to disable touch when palm is detected or stylus is detected or near the stylus, go to config folder and find your device's config, add this:
 
@@ -54,3 +43,13 @@ Cone = true
 ### Enable on screen keyboard on login screen
 
 To enable the on screen keyboard to show up on the login screen you need to change your Accessibility settings in the `System Preferences>Users & Groups>Login Options>Accessibility Options` put a checkbox on the `Accessibility Keyboard`.
+
+### Trouble shooting
+
+- Make sure you are using the latest version of `BigSurface` and `IPTSDaemon`
+
+- Check the output of the script, there should NOT be any
+
+- If touchscreen still fails to function, then run `IPTSDaemon` manually to see what is going wrong
+
+  ​	Then create an issue telling me **what is your device**, attaching your **ioreg** and output of `sudo dmesg | grep -E "SurfaceS|SurfaceH|SurfaceM|IntelP"` (remember to install `DebugEnhancer.kext` on macOS 12 and newer)

@@ -1,10 +1,14 @@
 #!/bin/bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
+brew remove sleepwatcher 2>/dev/null
+rm ~/.wakeup 2>/dev/null
+rm ~/.sleep 2>/dev/null
+
 # remove old IPTSDaemon
 ## unload IPTSDaemon from both locations
 launchctl unload /Library/LaunchAgents/com.xavier.IPTSDaemon.plist 2>/dev/null
-launchctl unload /Library/LaunchDaemons/com.xavier.IPTSDaemon.plist 2>/dev/null
+sudo launchctl unload /Library/LaunchDaemons/com.xavier.IPTSDaemon.plist 2>/dev/null
 ## remove the files
 sudo rm /usr/local/bin/IPTSDaemon 2>/dev/null
 sudo rm /Library/LaunchAgents/com.xavier.IPTSDaemon.plist 2>/dev/null
@@ -28,4 +32,4 @@ sudo chmod 644 /Library/LaunchDaemons/com.xavier.IPTSDaemon.plist
 sudo chown root:wheel /Library/LaunchDaemons/com.xavier.IPTSDaemon.plist
 sudo xattr -d com.apple.quarantine /Library/LaunchDaemons/com.xavier.IPTSDaemon.plist 2>/dev/null
 
-launchctl load /Library/LaunchDaemons/com.xavier.IPTSDaemon.plist
+sudo launchctl load /Library/LaunchDaemons/com.xavier.IPTSDaemon.plist

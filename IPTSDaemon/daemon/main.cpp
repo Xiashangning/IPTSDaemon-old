@@ -78,6 +78,11 @@ static int main()
         } catch (std::out_of_range &e) {
             spdlog::error(e.what());
         } catch (std::system_error &e) {
+            if (ctrl.should_reinit) {
+                ctrl.disconnect_from_kernel();
+                sleep(2);
+                ctrl.connect_to_kernel();
+            }
             spdlog::error(e.what());
         }
 

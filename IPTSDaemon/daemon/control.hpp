@@ -14,9 +14,14 @@ class Control {
 public:
 	IPTSDeviceInfo      info;
     gsl::span<UInt8>    buffers[IPTS_BUFFER_NUM];
+    
+    bool should_reinit = false;
 
 	Control();
 	~Control();
+    
+    void connect_to_kernel();
+    void disconnect_from_kernel();
 
 	gsl::span<UInt8> &read_input();
     void send_hid_report(IPTSHIDReport &report);
