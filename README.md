@@ -21,7 +21,7 @@ Use this under your own consideration! Touching process is very energy consuming
 
 - Install [Homebrew](https://brew.sh)
 
-- in `Terminal`, execute `brew install fmt ini`
+- in `Terminal`, execute `brew install fmt inih`
 
 #### 3. Finally, run the script `install_daemon.sh` in the zip file you just downloaded and all files needed will be copied to desired locations. 
 
