@@ -98,14 +98,12 @@
 		25246EFC28571C87008AE18F /* config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F4C3DC28560C450008641E /* config.cpp */; };
 		25246F0028571C87008AE18F /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25D49D932854F25E008CAAA5 /* IOKit.framework */; };
 		25246F0B28571CC3008AE18F /* dump.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25246F0828571CC3008AE18F /* dump.cpp */; };
-		25B601AA2862060F007F0D24 /* libfmt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25B601A92862060F007F0D24 /* libfmt.a */; };
 		25B6BD3C2890317E007CA999 /* libinih.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 25B6BD3B2890317E007CA999 /* libinih.0.dylib */; };
 		25B6BD3D28903195007CA999 /* libinih.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 25B6BD3B2890317E007CA999 /* libinih.0.dylib */; };
 		25C14384285C894B00B2CFF3 /* stylus-manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25C14382285C894B00B2CFF3 /* stylus-manager.cpp */; };
 		25C14385285C894B00B2CFF3 /* stylus-manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25C14382285C894B00B2CFF3 /* stylus-manager.cpp */; };
 		25C14386285C894B00B2CFF3 /* stylus-manager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 25C14383285C894B00B2CFF3 /* stylus-manager.hpp */; };
 		25C14387285C894B00B2CFF3 /* stylus-manager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 25C14383285C894B00B2CFF3 /* stylus-manager.hpp */; };
-		25C4A35F28629D7F0002FF03 /* libfmt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25B601A92862060F007F0D24 /* libfmt.a */; };
 		25D49D942854F25E008CAAA5 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25D49D932854F25E008CAAA5 /* IOKit.framework */; };
 		25D552F8285EEAF500DA3F34 /* com.xavier.IPTSDaemon.plist in Copy Files */ = {isa = PBXBuildFile; fileRef = 25D552F6285EEA0E00DA3F34 /* com.xavier.IPTSDaemon.plist */; };
 		25D552F9285EEAF500DA3F34 /* install_daemon.sh in Copy Files */ = {isa = PBXBuildFile; fileRef = 25D552F7285EEA0E00DA3F34 /* install_daemon.sh */; };
@@ -122,6 +120,11 @@
 		25D55321285EF1F000DA3F34 /* surface-book1.conf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 25D55313285EF1AA00DA3F34 /* surface-book1.conf */; };
 		25D55322285EF1F000DA3F34 /* surface-pro4-b.conf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 25D55314285EF1AA00DA3F34 /* surface-pro4-b.conf */; };
 		25D55323285EF1F000DA3F34 /* surface-pro5.conf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 25D55315285EF1AA00DA3F34 /* surface-pro5.conf */; };
+		25E5092E28AF811D00EF9D34 /* libfmt.9.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 25E5092D28AF811D00EF9D34 /* libfmt.9.0.0.dylib */; };
+		25E5092F28AF811D00EF9D34 /* libfmt.9.0.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 25E5092D28AF811D00EF9D34 /* libfmt.9.0.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		25E5093128AF814500EF9D34 /* libfmt.9.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 25E5092D28AF811D00EF9D34 /* libfmt.9.0.0.dylib */; };
+		25E5093228AF814500EF9D34 /* libfmt.9.0.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 25E5092D28AF811D00EF9D34 /* libfmt.9.0.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		25E5093428AF818800EF9D34 /* libinih.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 25B6BD3B2890317E007CA999 /* libinih.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		25F4C42428560C460008641E /* touch-manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F4C3D528560C450008641E /* touch-manager.cpp */; };
 		25F4C42528560C460008641E /* cone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F4C3DA28560C450008641E /* cone.cpp */; };
 		25F4C42628560C460008641E /* devices.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25F4C3DB28560C450008641E /* devices.cpp */; };
@@ -181,6 +184,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		25E5093028AF811D00EF9D34 /* Embed Libraries */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				25E5093428AF818800EF9D34 /* libinih.0.dylib in Embed Libraries */,
+				25E5092F28AF811D00EF9D34 /* libfmt.9.0.0.dylib in Embed Libraries */,
+			);
+			name = "Embed Libraries";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		25E5093328AF814500EF9D34 /* Embed Libraries */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				25E5093228AF814500EF9D34 /* libfmt.9.0.0.dylib in Embed Libraries */,
+			);
+			name = "Embed Libraries";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -188,7 +214,6 @@
 		25246F0728571CC3008AE18F /* proto-rt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "proto-rt.cpp"; sourceTree = "<group>"; };
 		25246F0828571CC3008AE18F /* dump.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = dump.cpp; sourceTree = "<group>"; };
 		25246F0928571CC3008AE18F /* proto-plot.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "proto-plot.cpp"; sourceTree = "<group>"; };
-		25B601A92862060F007F0D24 /* libfmt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfmt.a; path = ../../../../usr/local/Cellar/fmt/8.1.1_1/lib/libfmt.a; sourceTree = "<group>"; };
 		25B6BD3B2890317E007CA999 /* libinih.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libinih.0.dylib; path = ../../../../usr/local/Cellar/inih/56/lib/libinih.0.dylib; sourceTree = "<group>"; };
 		25C14382285C894B00B2CFF3 /* stylus-manager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "stylus-manager.cpp"; sourceTree = "<group>"; };
 		25C14383285C894B00B2CFF3 /* stylus-manager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "stylus-manager.hpp"; sourceTree = "<group>"; };
@@ -210,6 +235,7 @@
 		25D55314285EF1AA00DA3F34 /* surface-pro4-b.conf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "surface-pro4-b.conf"; sourceTree = "<group>"; };
 		25D55315285EF1AA00DA3F34 /* surface-pro5.conf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "surface-pro5.conf"; sourceTree = "<group>"; };
 		25E1168428559B6400E27FC2 /* IPTSDaemon.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = IPTSDaemon.entitlements; sourceTree = "<group>"; };
+		25E5092D28AF811D00EF9D34 /* libfmt.9.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfmt.9.0.0.dylib; path = ../../../../../../usr/local/Cellar/fmt/9.0.0/lib/libfmt.9.0.0.dylib; sourceTree = "<group>"; };
 		25F4C3D528560C450008641E /* touch-manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "touch-manager.cpp"; sourceTree = "<group>"; };
 		25F4C3D628560C450008641E /* cone.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cone.hpp; sourceTree = "<group>"; };
 		25F4C3D728560C450008641E /* devices.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = devices.hpp; sourceTree = "<group>"; };
@@ -269,7 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				25B6BD3D28903195007CA999 /* libinih.0.dylib in Frameworks */,
-				25C4A35F28629D7F0002FF03 /* libfmt.a in Frameworks */,
+				25E5093128AF814500EF9D34 /* libfmt.9.0.0.dylib in Frameworks */,
 				25246F0028571C87008AE18F /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,7 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				25B6BD3C2890317E007CA999 /* libinih.0.dylib in Frameworks */,
-				25B601AA2862060F007F0D24 /* libfmt.a in Frameworks */,
+				25E5092E28AF811D00EF9D34 /* libfmt.9.0.0.dylib in Frameworks */,
 				25D49D942854F25E008CAAA5 /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -335,8 +361,8 @@
 		25D49D922854F25E008CAAA5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				25E5092D28AF811D00EF9D34 /* libfmt.9.0.0.dylib */,
 				25B6BD3B2890317E007CA999 /* libinih.0.dylib */,
-				25B601A92862060F007F0D24 /* libfmt.a */,
 				25D49D932854F25E008CAAA5 /* IOKit.framework */,
 			);
 			name = Frameworks;
@@ -598,6 +624,7 @@
 				25246EEC28571C87008AE18F /* Sources */,
 				25246EFD28571C87008AE18F /* Frameworks */,
 				25246F0128571C87008AE18F /* Copy Files */,
+				25E5093328AF814500EF9D34 /* Embed Libraries */,
 			);
 			buildRules = (
 			);
@@ -617,6 +644,7 @@
 				25D49D6E2854EDB2008CAAA5 /* Frameworks */,
 				25D49D6F2854EDB2008CAAA5 /* Copy Files */,
 				25D55316285EF1D500DA3F34 /* CopyFiles */,
+				25E5093028AF811D00EF9D34 /* Embed Libraries */,
 			);
 			buildRules = (
 			);
@@ -717,6 +745,7 @@
 					/usr/local/Cellar/fmt/8.1.1_1/lib,
 					/usr/local/Cellar/inih/55/lib,
 					/usr/local/Cellar/inih/56/lib,
+					/usr/local/Cellar/fmt/9.0.0/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = com.xavier;
@@ -737,6 +766,7 @@
 					/usr/local/Cellar/fmt/8.1.1_1/lib,
 					/usr/local/Cellar/inih/55/lib,
 					/usr/local/Cellar/inih/56/lib,
+					/usr/local/Cellar/fmt/9.0.0/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = com.xavier;
@@ -879,6 +909,7 @@
 					/usr/local/Cellar/fmt/8.1.1_1/lib,
 					/usr/local/Cellar/inih/55/lib,
 					/usr/local/Cellar/inih/56/lib,
+					/usr/local/Cellar/fmt/9.0.0/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = com.xavier;
@@ -899,6 +930,7 @@
 					/usr/local/Cellar/fmt/8.1.1_1/lib,
 					/usr/local/Cellar/inih/55/lib,
 					/usr/local/Cellar/inih/56/lib,
+					/usr/local/Cellar/fmt/9.0.0/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = com.xavier;
