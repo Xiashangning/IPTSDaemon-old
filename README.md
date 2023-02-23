@@ -1,3 +1,6 @@
+# This project is deprecated!!!
+# Please use https://github.com/Xiashangning/IPTSDaemon
+
 # IPTSDaemon
 
 This is the user space IPTS daemon for Surface touch screen process
